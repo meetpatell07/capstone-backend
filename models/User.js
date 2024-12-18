@@ -1,13 +1,28 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
+
+    employeeId: {
+        type: Number,
+        unique: true,
+    },
     fname: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
     },
     lname: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+    },
+    profile: {
+        type: String, // URL for the profile picture
+        required: false,
+    },
+    dateOfBirth: {
+        type: Date,
+        required: true,
     },
     email: {
         type: String,
@@ -29,7 +44,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-      updatedAt: {
+    updatedAt: {
         type: Date,
         default: Date.now,
     },
