@@ -1,5 +1,9 @@
 const User = require("../models/User"); // Import a User Model
 
+const getAllUsers = async () => {
+    return await User.find();
+}
+
 // Business Logic: Create a new User
 const createUserService = async ({ fname, lname, email, password, mobile, dateofBirth, role, profile, employeeId}) => {
     // Check if the email already exists
@@ -29,4 +33,4 @@ const createUserService = async ({ fname, lname, email, password, mobile, dateof
 
 }
 
-module.exports = { createUserService };
+module.exports = { getAllUsers,createUserService };
