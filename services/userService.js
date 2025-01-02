@@ -33,4 +33,4 @@ const createUserService = async ({ fname, lname, email, password, mobile, dateof
 
 }
 
-module.exports = { getAllUsers,createUserService };
+module.exports = { getAllUsers, createUserService };

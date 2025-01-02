@@ -5,6 +5,7 @@ const sitesSchema = new mongoose.Schema({
     siteId: {
         type: Number,
         unique: true,
+        required: true,
     },
     name: {
         type: String,
@@ -41,3 +42,5 @@ const sitesSchema = new mongoose.Schema({
     },
 
 })
+
+module.exports = mongoose.model('Site', sitesSchema)

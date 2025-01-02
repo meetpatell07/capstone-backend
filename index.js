@@ -3,7 +3,8 @@ const mongoose = require('mongoose') // Mongoose for MongoDB Conenction
 const dotenv = require('dotenv'); // dotenv to load environment variables
 dotenv.config() // Load the variable from .env file
 
-const userRoutes = require("./routes/userRoutes")
+const userRoutes = require("./routes/userRoutes");
+const sitesRoutes = require("./routes/siteRoutes");
 
 const SERVER_PORT = process.env.port || 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -27,7 +28,13 @@ mongoose.connect(MONGO_URI, {
 .then(() => console.log('Connected to MongoDB'))
 .catch((error) => console.log('Error connecting to MongoDB:', error));
 
+// Intergrating Several Routes with APP
+
+// User Routes
 app.use('/api/v1', userRoutes)
+
+// Site Routes
+app.use('/api/v1/sites', sitesRoutes )
 
 // Listen on server routes
 app.listen(SERVER_PORT, () => {

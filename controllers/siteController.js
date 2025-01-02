@@ -15,9 +15,9 @@ const getAllSite = async (req, res) => {
 
 // Create a Site
 const createSite = async (req, res) => {
-    const updatedData = req.body; 
+    const data = req.body; 
     try {
-        const site = await siteService.createSite(updatedData);
+        const site = await siteService.createSite(data);
         res.status(201).json({ message: "Successfully Created Sites", site})
     } catch (error) {
         res.status(500).json({ message: "Error Creating Site", error})
@@ -77,4 +77,12 @@ const deleteSite = async (req, res) => {
         console.log(error); 
         res.status(500).json({ message: "Error Deleting Site", error})
     }
+}
+
+module.exports = {
+    getAllSite,
+    createSite,
+    getSitebyId,
+    updateSite,
+    deleteSite
 }
