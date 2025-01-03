@@ -5,6 +5,7 @@ dotenv.config() // Load the variable from .env file
 
 const userRoutes = require("./routes/userRoutes");
 const sitesRoutes = require("./routes/siteRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 
 const SERVER_PORT = process.env.port || 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -35,6 +36,9 @@ app.use('/api/v1', userRoutes)
 
 // Site Routes
 app.use('/api/v1/sites', sitesRoutes )
+
+// Report Routes
+app.use('/api/v1/reports', reportRoutes)
 
 // Listen on server routes
 app.listen(SERVER_PORT, () => {

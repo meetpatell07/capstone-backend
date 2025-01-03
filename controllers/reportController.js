@@ -79,3 +79,11 @@ const deleteReport = async (req, res) => {
         res.status(500).json({message: "Error Deleting Reports", error})
     }
 }
+
+module.exports = {
+    getAllReport,
+    createReport,
+    getReportbyId,
+    updateReport,
+    deleteReport
+}
