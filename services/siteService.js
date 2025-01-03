@@ -11,13 +11,12 @@ const getAllSite = async () => {
 const createSite = async (siteData) => {
 
     try {
-        console.log("Incoming siteData in service:", siteData); // Debug siteData
-
+        
         // Get the last site from the database (sort descending by siteId)
         const lastsiteId =  await Site.findOne().sort({ siteId: -1 }) // sort Descending
 
         // Generate a new siteID
-        const newSiteId =  lastsiteId ? lastsiteId.siteId + 1 : 101; // Add 1 if siteId already exist, else default
+        const newSiteId = lastsiteId ? lastsiteId.siteId + 1 : 101; // Add 1 if siteId already exist, else default
         
         // create a new site object with generated siteID
         const site = new Site({

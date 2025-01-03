@@ -6,7 +6,11 @@ const siteService = require('../services/siteService')
 const getAllSite = async (req, res) => {
     try {
         const sites = await siteService.getAllSite();
-        res.status(200).json(sites)
+        if(sites){
+            res.status(200).json({ message: "Successfully Fetched Site", sites});
+        } else {
+            res.status(404).json({ message: "Site Not Found"});
+        }    
     } catch (error) {
         res.status(500).json({ message: "Error Fetching sites", error})
         console.log(error);
@@ -27,10 +31,10 @@ const createSite = async (req, res) => {
 
 // Get Site by ID
 const getSitebyId = async (req, res) => {
-    const { sid } = req.params;
     try {
-        const site = await siteService.getSitebyId(sid);
-        if(site){
+        const {siteId}  = req.params; // Using destructing to get the siteId from the URL params
+        const site = await siteService.getSitebyId(siteId);
+        if(siteId){
             res.status(200).json({ message: "Successfully Fetched Site", site});
         } else {
             res.status(404).json({ message: "Site Not Found"});
@@ -43,13 +47,15 @@ const getSitebyId = async (req, res) => {
 
 // Update Site by ID
 const updateSite = async (req, res) => {
-    const {sid} = req.params;
-    const {updatedData} = req.body;
+    const {siteId} = req.params;
+    const updatedData = req.body;
+
 
     try {
-        const updatesitebyId =  await siteService.updateSite(sid, updatedData);
-        if(updatedData){
-            res.status(200).json({ message: "Successfully Fetched Site", updatesitebyId});
+        const updatesitebyId =  await siteService.updateSite(siteId, updatedData);
+        console.log(updatesitebyId)
+        if(updatesitebyId){
+            res.status(200).json({ message: "Successfully Updated Site", updatesitebyId});
         } else {
             res.status(404).json({ message: "Site Not Found"});
         }
